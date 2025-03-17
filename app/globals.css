@@ -3,65 +3,93 @@
 @tailwind utilities;
 
 :root {
-  --background: 220 33% 98%;
-  --foreground: 222 47% 11%;
+  /* Light theme */
+  --background: 0 0% 100%;
+  --foreground: 224 71.4% 4.1%;
   
   --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card-foreground: 224 71.4% 4.1%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
+  --popover-foreground: 224 71.4% 4.1%;
   
+  /* Modern blue as primary color */
   --primary: 221 83% 53%;
   --primary-foreground: 210 40% 98%;
   
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222 47% 11%;
+  /* Subtle gray for secondary elements */
+  --secondary: 220 14.3% 95.9%;
+  --secondary-foreground: 220.9 39.3% 11%;
   
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  /* Muted colors for less emphasis */
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
   
-  --accent: 221 83% 53%;
-  --accent-foreground: 222 47% 11%;
+  /* Accent colors for highlights */
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
   
+  /* Destructive colors for warnings/errors */
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
   
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
+  /* Border and input colors */
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
   --ring: 221 83% 53%;
+
+  /* Chart colors */
+  --chart-1: 221 83% 53%;
+  --chart-2: 262 83% 58%;
+  --chart-3: 291 83% 58%;
+  --chart-4: 199 89% 48%;
+  --chart-5: 168 83% 41%;
   
   --radius: 0.75rem;
 }
 
 .dark {
-  --background: 222 47% 11%;
+  /* Dark theme */
+  --background: 224 71.4% 4.1%;
   --foreground: 210 40% 98%;
   
-  --card: 222 47% 11%;
+  --card: 224 71.4% 4.1%;
   --card-foreground: 210 40% 98%;
   
-  --popover: 222 47% 11%;
+  --popover: 224 71.4% 4.1%;
   --popover-foreground: 210 40% 98%;
   
+  /* Brighter blue for primary in dark mode */
   --primary: 217 91% 60%;
-  --primary-foreground: 222 47% 11%;
+  --primary-foreground: 224 71.4% 4.1%;
   
-  --secondary: 217.2 32.6% 17.5%;
+  /* Darker grays for secondary elements */
+  --secondary: 215 27.9% 16.9%;
   --secondary-foreground: 210 40% 98%;
   
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  /* Muted colors for dark theme */
+  --muted: 215 27.9% 16.9%;
+  --muted-foreground: 217.9 10.6% 64.9%;
   
-  --accent: 217 91% 60%;
+  /* Accent colors for dark theme */
+  --accent: 215 27.9% 16.9%;
   --accent-foreground: 210 40% 98%;
   
+  /* Destructive colors for dark theme */
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
   
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
+  /* Border and input colors for dark theme */
+  --border: 215 27.9% 16.9%;
+  --input: 215 27.9% 16.9%;
   --ring: 224.3 76.3% 48%;
+
+  /* Chart colors for dark theme */
+  --chart-1: 217 91% 60%;
+  --chart-2: 262 91% 65%;
+  --chart-3: 291 91% 65%;
+  --chart-4: 199 95% 55%;
+  --chart-5: 168 91% 48%;
 }
 
 @layer base {
@@ -73,14 +101,135 @@
   }
 }
 
+/* Enhanced gradient for hero section */
 .hero-gradient {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  background: linear-gradient(135deg, 
+    hsl(var(--primary)) 0%, 
+    hsl(262, 83%, 58%) 100%
+  );
 }
 
+/* Enhanced hover effects */
 .card-hover {
-  transition: transform 0.2s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
   transform: translateY(-4px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Additional utility classes */
+.glass-effect {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, 
+    hsl(var(--primary)) 0%, 
+    hsl(262, 83%, 58%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@layer components {
+  .container {
+    @apply mx-auto px-4 md:px-6 max-w-7xl w-full;
+  }
+
+  .section {
+    @apply py-12 md:py-20;
+  }
+
+  .section-inner {
+    @apply container flex flex-col items-center;
+  }
+
+  /* Center align content utilities */
+  .content-wrapper {
+    @apply w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .content-narrow {
+    @apply w-full max-w-[900px] mx-auto px-4 sm:px-6;
+  }
+}
+
+@layer utilities {
+  .animate-grid-fade {
+    animation: grid-fade 3s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.5s ease-out;
+  }
+
+  .animate-fade-down {
+    animation: fade-down 0.5s ease-out;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .animate-blink-fast {
+    animation: blink 0.7s step-end infinite;
+  }
+}
+
+@keyframes grid-fade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 70% { opacity: 1; }
+  71%, 100% { opacity: 0; }
+}
+
+/* Improve scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better tap highlights for mobile */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
 }
